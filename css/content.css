@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+.blend-example {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+
+.reveal .blend-example__output {
+    background-size: 50%, contain;
+    background-repeat: no-repeat;
+    background-position: bottom right, center;
+    margin: 0 auto;
+}
+
+.button {
+    font-size: 1rem;
+    color: #e7ad52;
+    position: absolute;
+    top: 1em;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 2px solid currentColor;
+    background: none;
+    padding: .5em 1em;
+    margin: .5em;
+    font-weight: bold;
+    text-transform: capitalize;
+    z-index: 1;
+}
+.webcam {
+    position: relative;
+}
+
+.webcam__video {
+    width: 95%;
+    display: block;
+}
+
+.reveal img.webcam__img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+}

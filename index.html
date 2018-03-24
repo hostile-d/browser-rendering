@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rendering Perfomance Inside Out</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Rendering Perfomance</h1>
+                <h3 >Inside Out</h3>
+                <aside class="notes">
+                    <ul>
+                        <li>Pretty simple theme, but somebody could here something new, another could refresh this important things in their memory.</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <section>
+                    <h2>How does pixel looks like?</h2>
+                </section>
+                <aside class="notes">
+                    <p></p>
+                </aside>
+                <section>
+                    <h3>Just an array in memory</h3>
+                    <img src="images/pixel.png" alt="">
+                    <aside class="notes">
+                        <ul>
+                            <li>Each one of three components of pixel(RGB) have 0%-100% brightness. or 0-255, or 1 Byte</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Sprite, Layer, Texture</h3>
+                    <img src="images/coder-1.svg" alt="">
+                    <aside class="notes">
+                        <ul>
+                            <li>Sprite, Layer, Texture - all the same thing in different spheres.</li>
+                            <li>Goal: get array of pixels from sprite and paste them to the screen.</li>
+                            <li>At first we take an array from first image and put another array of pixels over the first image.</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-state="baforeWebcam">
+                    <h3>Sprite, Layer, Texture</h3>
+                    <img src="images/coder-2.svg" alt="">
+                </section>
+                <section>
+                    <div class="webcam">
+                        <video class="js-webcam webcam__video" autoplay></video>
+                        <img class="js-travolta webcam__img" src="images/travolta.gif" alt="">
+                    </div>
+                    <button class="js-take-screenshot button">take screenshot</button>
+                    <aside class="notes">
+                        <ul>
+                            <li>Here we have transparency and it's just a new byte plus to RGB bytes. And we just put it over the first one.</li>
+                            <li>And if we do this movements enough often then we have next slide:</li>
+                            <li>This is Compositing</li>
+                            <li>Compositing is about how to put one thing above another one.</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-state="baforeBlend">
+                    <h3>What is compositing?</h3>
+                    <table>
+                        <tr>
+                            <th>Input</th>
+                            <th>Output</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>Screen mamory before</li>
+                                    <li>Sprite to be added</li>
+                                </ul>
+                            </td>
+                            <td>Screen Mamory after</td>
+                        </tr>
+                    </table>
+                    <aside class="notes">
+                        <ul>
+                            <li>Compositing is basically a function</li>
+                            <li>It takes a screen snapshoot as it was before</li>
+                            <li>And put new date over it</li>
+                            <li>Output > new snapshoot</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h3>background-blend-mode</h3>
+                    <div class="blend-example">
+                        <div class="js-blend-screenshot blend-example__output blend-example__output--multiply"></div></button>
+                        <button class="js-toggle-blend button">toggle blend</button>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>As far composition is a funtion we can change something inside of it</li>
+                            <li>For example multyply colors or combine another math</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h3>Another compositioning</h3>
+                    <ul>
+                        <li>Translate</li>
+                        <li>Scale</li>
+                        <li>Rotate</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Translation is about moving pixels</li>
+                            <li>Scaling is when we take banch of pixels and multyply them with factor</li>
+                            <li>Rotation is also about moving the same array</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h3>Composite-only filters</h3>
+                    <ul>
+                        <li>grayscale</li>
+                        <li>blur</li>
+                        <li>contrast</li>
+                        <li>hue-rotate</li>
+                        <li>invert</li>
+                        <li>opacity</li>
+                        <li>saturate</li>
+                        <li>sepia</li>
+                    </ul>
+                    <p class="fragment">* only CSS filters( not SVG )</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>We have also some more composite tools like filters</li>
+                            <li>Works only when they are on the separate composite layer</li>
+                            <li>Browser support isn't ideal</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Browser rendering</h3>
+                    <img src="images/render-tree.png" alt="">
+                    <aside class="notes">
+                        <ol>
+                            <li>Use the HTML to create the Document Object Model (DOM).</li>
+                            <li>Use the CSS to create the CSS Object Model (CSSOM).</li>
+                            <li>Execute the Scripts on the DOM and CSSOM.</li>
+                            <li>Combine the DOM and CSSOM to form the Render Tree.</li>
+                            <li>Use the Render Tree to Layout the size and position of all elements.</li>
+                            <li>Paint in all the pixels.</li>
+                        </ol>
+                    </aside>
+                </section>
+                <section>
+                    <h3>Blink engine</h3>
+                    <img src="images/blink1.png" alt="">
+                    <img src="images/blink2.png" class="fragment" alt="">
+                    <aside class="notes">
+                        <ul>
+                            <li>CPU is universal enought</li>
+                            <li>GPU can do alot of simple operations at the same time</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h3>- Hey, CPU could you please move this 10kk pixels to the screen please.</h3>
+                    <h3>- And buy the way, you have just 10ms per frame max. Buy!</h3>
+                </section>
+                <section>
+                    <h3>CPU:</h3>
+                    <img src="images/dog-lag.gif" alt="" width="100%">
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Efficient painting in browsers</h3>
+                    <ul>
+                        <li>Page is organized in layers</li>
+                        <li>Layers may be broken down to the tiles</li>
+                        <li>Tiles are saved as bitmaps and uploaded into VRAM</li>
+                        <li>Tiles are reusable</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Composite layers</h3>
+                    <video width="100%" controls>
+                            <source src="images/3d-layers.mp4" type="video/mp4">
+                        </video>
+                </section>
+                <section>
+                    <h3>Rendering tiles</h3>
+                    <img src="images/netflix.png" alt="">
+                </section>
+                <section>
+                    <a href="https://csstriggers.com/">csstriggers.com</a>
+                    <img src="images/csstriggers.png" alt="">
+                </section>
+                <section>
+                    <h2>Solution</h2>
+                    <h3>Make everything separate layer?</h3>
+                    <aside class="notes">
+                        <ul>
+                            <p>(No). We don't know how much video mamory have user.</p>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>But now JavaScript</h2>
+                    <img src="images/translate.png" alt="">
+                </section>
+                <section>
+                    <pre>
+                        <code>
+    .img {
+        position: absolute;
+        transform: translateX(0);
+    }
+                        </code>
+                    </pre>
+                    <pre>
+                        <code>
+    let img = document.querySelector('.img');
+    let i = 0;
+    requestAnimationFrame(translate);
+    function translate() {
+        img.style.transform = `translateX(${i}px)`;
+        i++;
+        requestAnimationFrame(translate);
+    }
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <video width="100%" controls>
+                        <source src="images/translateX.mp4" type="video/mp4">
+                    </video>
+                </section>
+                <section>
+                    <pre>
+                        <code>
+    .img {
+        position: absolute;
+        transform: translate3d(0,0,0);
+    }
+                        </code>
+                    </pre>
+                    <pre>
+                        <code>
+    let img = document.querySelector('.img');
+    let i = 0;
+    requestAnimationFrame(translate);
+    function translate() {
+        img.style.transform = `translateX3d${i}px,0,0)`;
+        i++;
+        requestAnimationFrame(translate);
+    }
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <video width="100%" controls>
+                        <source src="images/translate3d.mp4" type="video/mp4">
+                    </video>
+                </section>
+                <section>
+                    <pre>
+                        <code>
+    .img {
+        position: absolute;
+        animation: move 2s infinite;
+    }
+    @keyframes move {
+        from { transform: translateX(0); }
+        to { transform: translateX(200px); }
+    }
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <video width="100%" controls>
+                        <source src="images/translate3d.mp4" type="video/mp4">
+                    </video>
+                </section>
+                <section id="will-change">
+                    <pre>
+                        <code>
+    .img {
+        position: absolute;
+        will-change: left;
+        animation: move 2s infinite;
+    }
+    @keyframes move {
+        from { left: 0; }
+        to { left: 200px; }
+    }
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <img src="images/how-dare-you.jpg" alt="">
+                </section>
+                <section>
+                    <video width="100%" controls>
+                        <source src="images/translate3d.mp4" type="video/mp4">
+                    </video>
+                    <h3>
+                        <a href="#/will-change" class="fragment">Why?</a>
+                    </h3>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Canvas time!</h2>
+                    <ul>
+                        <li>We are on a separate layer</li>
+                        <li>We get direct pixel access</li>
+                    </ul>
+                </section>
+                <section>
+                    <h5>Canvas is JavaScript driven == CPU rendering</h5>
+                    <video width="80%" autoplay controls>
+                        <source src="images/essex.mp4" type="video/mp4">
+                    </video>
+                </section>
+                <section>
+                    <h5>Refactoring to &#60;video&#62;</h5>
+                    <video width="80%" autoplay controls>
+                        <source src="images/essex-video.mp4" type="video/mp4">
+                    </video>
+                </section>
+            </section>
+            <section>
+                <h2>Summary</h2>
+                <ul>
+                    <li>Browsers are clever</li>
+                    <li>Do as much on GPU, not CPU</li>
+                    <li>Beware of Layout and Paint</li>
+                    <li>Canvas == <b>CPU-bound</b> pixel access</li>
+                    <li>WebGL == <b>GPU-bound</b> pixel access</li>
+                </ul>
+            </section>
+            <section>
+                <section>
+                    <h3>Bonus: calc perfomance</h3>
+                </section>
+                <section>
+                    <ul>
+                        <li>Use right technology</li>
+                        <li>requestAnimationFrame API</li>
+                        <li>Throttling</li>
+                        <li>Pass to webworkers</li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+    </div>
+    <script src="js/head.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/webcam.js"></script>
+    <!-- <script src="js/blend.js"></script> -->
+</body>
+</html>

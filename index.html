@@ -367,7 +367,7 @@
         Reveal.initialize({
             transition: 'convex',
             multiplex: {
-                secret: '04046b6e97d43789', // null so the clients do not have control of the master presentation
+                secret: Reveal.getQueryHash().s || null, // null so the clients do not have control of the master presentation
                 id: '8a811ed19082aa65', // id, obtained from socket.io server
                 url: 'https://reveal-socket-io-server.herokuapp.com' // Location of socket.io server
             },

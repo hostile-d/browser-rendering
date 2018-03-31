@@ -11,7 +11,7 @@ var server    = http.createServer(app);
 io = io(server);
 
 var opts = {
-	port :      1947,
+	port : process.env.PORT || 8080,
 	baseDir :   __dirname + '/../../'
 };
 

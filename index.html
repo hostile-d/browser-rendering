@@ -374,7 +374,10 @@
             dependencies: [
                 //server
                 { src: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js', async: true },
-                { src: 'plugin/multiplex/master.js', async: true },
+                { src: Reveal.getQueryHash().s ?
+                    'plugin/multiplex/master.js' :
+                    'plugin/multiplex/client.js', async: true }
+                ]
                 
                 // Syntax highlight for <code> elements
                 { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },

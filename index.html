@@ -46,14 +46,15 @@
                         </ul>
                     </aside>
                 </section>
-                <section data-state="baforeWebcam">
+                <section data-state="beforeBroadcast">
                     <h3>Sprite, Layer, Texture</h3>
                     <img src="images/coder-2.svg" alt="">
                 </section>
                 <section>
-                    <div class="webcam">
-                        <video class="js-webcam webcam__video" autoplay></video>
-                        <img class="js-travolta webcam__img" src="images/travolta.gif" alt="">
+                    <div class="js-broadcast broadcast stretch">
+                        <video class="broadcast__video" id="broadcast-mediaplayer" autoplay></video>
+                        <!-- <video class="js-webcam webcam__video" autoplay></video> -->
+                        <img class="js-travolta broadcast__img" src="images/travolta.gif" alt="">
                     </div>
                     <button class="js-take-screenshot button">take screenshot</button>
                     <aside class="notes">
@@ -364,6 +365,7 @@
     <script src="js/head.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/webcam.js"></script>
+    <script src="js/broadcast.js"></script>
+    <!-- <script src="js/webcam.js"></script> -->
 </body>
 </html>

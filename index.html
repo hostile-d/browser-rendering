@@ -52,11 +52,10 @@
                 </section>
                 <section>
                     <div class="js-broadcast broadcast stretch">
-                        <video class="broadcast__video" id="broadcast-mediaplayer" autoplay></video>
-                        <!-- <video class="js-webcam webcam__video" autoplay></video> -->
+                        <video class="js-broadcast-video broadcast__video" id="broadcast-mediaplayer" autoplay></video>
                         <img class="js-travolta broadcast__img" src="images/travolta.gif" alt="">
+                        <button class="js-take-screenshot button">take screenshot</button>
                     </div>
-                    <button class="js-take-screenshot button">take screenshot</button>
                     <aside class="notes">
                         <ul>
                             <li>Here we have transparency and it's just a new byte plus to RGB bytes. And we just put it over the first one.</li>
@@ -94,7 +93,7 @@
                 </section>
                 <section>
                     <h3>background-blend-mode</h3>
-                    <div class="blend-example">
+                    <div class="blend-example stretch">
                         <div class="js-blend-screenshot blend-example__output blend-example__output--multiply"></div></button>
                         <button class="js-toggle-blend button">toggle blend</button>
                     </div>
@@ -366,6 +365,6 @@
     <script src="js/reveal.js"></script>
     <script src="js/app.js"></script>
     <script src="js/broadcast.js"></script>
-    <!-- <script src="js/webcam.js"></script> -->
+    <script src="js/blend.js"></script>
 </body>
 </html>

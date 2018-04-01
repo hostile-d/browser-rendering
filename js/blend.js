@@ -1,4 +1,4 @@
-Reveal.addEventListener( 'baforeWebcam', function() {
+Reveal.addEventListener( 'beforeBroadcast', function() {
     const constraints = {
         video: true
     };
@@ -22,7 +22,7 @@ Reveal.addEventListener( 'baforeWebcam', function() {
         "luminosity"
     ];
 
-    const   video = document.querySelector('.js-webcam'),
+    const   video = document.querySelector('.js-broadcast-video'),
             takeScreenshot = document.querySelector('.js-take-screenshot'),
             canvas = document.createElement('canvas'),
             screenshot = document.querySelector(".js-blend-screenshot"), 
@@ -51,8 +51,8 @@ Reveal.addEventListener( 'baforeWebcam', function() {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 
-        screenshot.style.width = video.videoWidth + "px"
-        screenshot.style.height = video.videoHeight + "px";
+        screenshot.style.width = "100%"
+        screenshot.style.height = "100%";
 
         canvas.getContext('2d').drawImage(video, 0, 0);
         let blob = canvas.toDataURL('image/webp');

@@ -18,12 +18,11 @@
 }
 
 .button {
-    font-size: 1rem;
+    font-size: 2rem;
     color: #e7ad52;
     position: absolute;
     top: 1em;
-    left: 50%;
-    transform: translate(-50%, 0);
+    right: 1em;
     border: 2px solid currentColor;
     background: none;
     padding: .5em 1em;

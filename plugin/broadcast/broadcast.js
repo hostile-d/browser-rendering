@@ -74,7 +74,7 @@ var RevealBroadcast = window.RevealBroadcast || (function(){
 		// overwrite scoketURL, e.g. connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 		socketURL: '/',
 		session: {
-        		audio: true,
+        		audio: false,
         		video: true,
         		oneway: true
         	},

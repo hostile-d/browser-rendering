@@ -112,7 +112,7 @@ var RevealBroadcast =
               var div = document.createElement("div");
               div.id = camera.deviceId;
               div.className = "camera";
-              html = "<h5>" + camera.label.split("(")[0].trim() + "</h5>";
+              html = '<button class="button button--camera">' + camera.label.split("(")[0].trim() + '</button>';
               div.innerHTML = html;
               cameraSelectionContainer.appendChild(div);
 

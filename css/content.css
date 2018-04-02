@@ -20,9 +20,6 @@
 .button {
     font-size: 2rem;
     color: #e7ad52;
-    position: absolute;
-    top: 1em;
-    right: 1em;
     border: 2px solid currentColor;
     background: none;
     padding: .5em 1em;
@@ -30,13 +27,30 @@
     font-weight: bold;
     text-transform: capitalize;
     z-index: 1;
+    word-break: keep-all;
+}
+
+.button--screenshot {
+    float: right;
+}
+
+.button--camera {
+
+}
+
+.buttons__wrapper {
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+    right: 3rem;
+    z-index: 2;
 }
 .broadcast {
     position: relative;
 }
 
 .broadcast__video {
-    width: 95%;
+    width: 100%;
     display: block;
 }
 
@@ -55,4 +69,8 @@
 }
 .broadcast.is-playing .broadcast__img{
     display: block;
+}
+
+.broadcast__camera-selection {
+    float: left;
 }

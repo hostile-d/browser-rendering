@@ -12,15 +12,21 @@ Reveal.initialize({
         connection: {
           socketURL: 'https://revealjs-broadcast.herokuapp.com/'
         },
+        session: {
+            audio: false
+        }
     },
     dependencies: [
         //server
         { src: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js', async: true },
+        
         { src: Reveal.getQueryHash().s ?
             'plugin/multiplex/master.js' :
             'plugin/multiplex/client.js', async: true },
         
         // Syntax highlight for <code> elements
+        
+        
         { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 
         // Speaker notes
@@ -29,7 +35,6 @@ Reveal.initialize({
 
         // broadcast
         { src: 'plugin/broadcast/RTCMultiConnection.min.js'},
-        { src: 'plugin/broadcast/socket.io.js'},
         { src: 'plugin/broadcast/bCrypt.js'},
         { src: 'plugin/broadcast/broadcast.js'},
     ],

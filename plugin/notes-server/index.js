@@ -1,17 +1,26 @@
 var http      = require('http');
+var https = require('https');
 var express   = require('express');
 var fs        = require('fs');
 var io        = require('socket.io');
 var Mustache  = require('mustache');
+var path = require('path');
+
+var privateKey  = fs.readFileSync(path.join(__dirname, 'fake-keys/privatekey.pem'));
+var certificate = fs.readFileSync(path.join(__dirname, 'fake-keys/certificate.pem'));
+var credentials = {key: privateKey, cert: certificate};
 
 var app       = express();
 var staticDir = express.static;
-var server    = http.createServer(app);
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
 
-io = io(server);
+
+io = io(httpServer);
 
 var opts = {
-	port : process.env.PORT || 8080,
+	httpPort : process.env.PORT || 8080,
+    httpsPort : process.env.PORT || 8443,
 	baseDir :   __dirname + '/../../'
 };
 
@@ -55,7 +64,7 @@ app.get( '/notes/:socketId', function( req, res ) {
 });
 
 // Actually listen
-server.listen( opts.port || null );
+httpsServer.listen( opts.httpsPort || null );
 
 var brown = '\033[33m',
 	green = '\033[32m',

@@ -46,17 +46,18 @@
                         </ul>
                     </aside>
                 </section>
-                <section data-state="beforeBroadcast">
+                <section>
                     <h3>Sprite, Layer, Texture</h3>
                     <img src="images/coder-2.svg" alt="">
                 </section>
                 <section>
                     <div class="buttons__wrapper">
-                        <div class="broadcast__camera-selection" id="cameras-selection-container"></div>
+                        <button id="btn-open-room">Open Room</button>
+                        <button id="btn-join-room">Join Room</button><hr>
                         <button class="js-take-screenshot button button--screenshot">take screenshot</button>
                     </div>
                     <div class="js-broadcast broadcast stretch">
-                        <video class="js-broadcast-video broadcast__video" id="broadcast-mediaplayer" ></video>
+                        <!--<video class="js-broadcast-video broadcast__video" id="broadcast-mediaplayer" ></video>-->
                         <img class="js-travolta broadcast__img" src="images/travolta.gif" alt="">
                     </div>
                     <aside class="notes">
@@ -369,6 +370,7 @@
     <script src="js/head.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/RTCMultiConnection.min.js"></script>
     <script src="js/broadcast.js"></script>
     <script src="js/blend.js"></script>
 </body>

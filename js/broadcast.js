@@ -55,6 +55,7 @@ function keepCheckingForRoom() {
         }
         if (isRoomExist === true) {
             connection.join(roomid);
+            document.querySelector('.js-travolta').style.display = 'block';
             console.log('Rejoined the room');
             setTimeout(keepCheckingForRoom, 3000);
             return;
@@ -78,8 +79,3 @@ function manageControls() {
         connectTimer = setTimeout(keepCheckingForRoom, 3000);
     }
 }
-
-
-document.querySelector('.js-show-gif').addEventListener('click', function (evt) {
-    document.querySelector('.js-travolta').style.display = 'block';
-})

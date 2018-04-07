@@ -1,4 +1,4 @@
-toggleCamera();
+
 var connection = new RTCMultiConnection();
 var predefinedRoomId = 'myRoomId';
 var connectTimer = null;
@@ -19,8 +19,6 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: true
 };
 connection.onstream = function(event) {
-
-
     video.srcObject = event.stream;
     video.controls = false;
 
@@ -40,19 +38,9 @@ connection.onstreamended = function(event) {
         video.pause();
     }
 };
-function manageControls() {
-    if(Reveal.getQueryHash().s) {
-        var roomBtn = document.querySelector('.js-broadcast-open');
-        roomBtn.addEventListener('click', function() {
-            this.disabled = true;
-            connection.open( predefinedRoomId );
-        });
-    } else {
-        document.querySelector('.js-broadcast-controls').style.display = 'none';
-        connectTimer = setTimeout(keepCheckingForRoom, 3000);
-    }
-}
+
 manageControls();
+toggleCamera();
 
 function keepCheckingForRoom() {
     connection.checkPresence(predefinedRoomId, function(isRoomExist, roomid) {
@@ -78,6 +66,20 @@ function keepCheckingForRoom() {
     });
 };
 
+
+function manageControls() {
+    if(Reveal.getQueryHash().s) {
+        var roomBtn = document.querySelector('.js-broadcast-open');
+        roomBtn.addEventListener('click', function() {
+            this.disabled = true;
+            connection.open( predefinedRoomId );
+        });
+    } else {
+        document.querySelector('.js-broadcast-controls').style.display = 'none';
+        connectTimer = setTimeout(keepCheckingForRoom, 3000);
+    }
+}
+
 function toggleCamera() {
     var dontDuplicate = {};
     var cameras = [];
@@ -93,8 +95,9 @@ function toggleCamera() {
         var toggleCameraBtn = document.querySelector('.js-broadcast-toggle-cam');
         var currentCamera = 0;
         toggleCameraBtn.addEventListener('click', function() {
-            if(!currentCamera + 1) currentCamera = 0;
+            if(!cameras[currentCamera + 1]) currentCamera = 0;
             navigator.mediaDevices.getUserMedia({video: {deviceId: cameras[++currentCamera]}}).then(function(stream) {
+                connection.resetTrack(null, true);
                 video.srcObject = stream;
                 video.play();
             });

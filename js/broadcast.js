@@ -45,11 +45,17 @@ function manageControls() {
         var roomBtn = document.createElement('button');
         controls.appendChild(roomBtn);
         roomBtn.classList.add('js-broadcast-open');
+        roomBtn.classList.add('button');
         roomBtn.innerText = "Open room";
         roomBtn.addEventListener('click', function() {
             this.disabled = true;
             connection.open( predefinedRoomId );
         });
+        document.querySelector('.js-broadcast-leave').addEventListener('click', function () {
+            connection.getAllParticipants().forEach(function(participantId) {
+                connection.disconnectWith(participantId);
+            });
+        })
     } else {
         connectTimer = setTimeout(keepCheckingForRoom, 3000);
     }

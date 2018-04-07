@@ -1,6 +1,8 @@
+toggleCamera();
 var connection = new RTCMultiConnection();
 var predefinedRoomId = 'myRoomId';
 var connectTimer = null;
+var video = document.querySelector('.js-broadcast-video');
 // this line is VERY_important
 connection.socketURL = 'https://rtc-multi-connection-server.herokuapp.com/';
 
@@ -17,7 +19,7 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: true
 };
 connection.onstream = function(event) {
-    var video = document.querySelector('.js-broadcast-video');
+
 
     video.srcObject = event.stream;
     video.controls = false;
@@ -33,7 +35,6 @@ connection.onstream = function(event) {
 
 };
 connection.onstreamended = function(event) {
-
     var video = document.querySelector('.js-broadcast-video');
     if (video) {
         video.pause();
@@ -51,11 +52,6 @@ function manageControls() {
             this.disabled = true;
             connection.open( predefinedRoomId );
         });
-        document.querySelector('.js-broadcast-leave').addEventListener('click', function () {
-            connection.getAllParticipants().forEach(function(participantId) {
-                connection.disconnectWith(participantId);
-            });
-        })
     } else {
         connectTimer = setTimeout(keepCheckingForRoom, 3000);
     }
@@ -85,3 +81,29 @@ function keepCheckingForRoom() {
         setTimeout(keepCheckingForRoom, 3000);
     });
 };
+
+function toggleCamera() {
+    var dontDuplicate = {};
+    var cameras = [];
+
+    DetectRTC.load(function() {
+        DetectRTC.videoInputDevices.forEach(function(camera) {
+            if(dontDuplicate[camera.deviceId])return;
+            dontDuplicate[camera.deviceId] = true;
+
+            cameras.push(camera.deviceId);
+
+            var toggleCameraBtn = document.querySelector('.js-broadcast-toggle-cam');
+
+            toggleCameraBtn.addEventListener('click', function() {
+                navigator.mediaDevices.getUserMedia({video: {deviceId: camera.deviceId}}).then(function(stream) {
+                    video.srcObject = stream;
+                    video.play();
+                });
+            });
+        });
+    });
+
+
+
+}

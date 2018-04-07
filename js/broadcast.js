@@ -6,10 +6,10 @@ connection.socketURL = 'https://rtc-multi-connection-server.herokuapp.com/';
 // all below lines are optional; however recommended.
 
 connection.session = {
-    audio: false,
-    video: true
+    audio: true,
+    video: true,
+    oneway: true
 };
-
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: false,
     OfferToReceiveVideo: true
@@ -32,6 +32,15 @@ connection.onstream = function(event) {
     setTimeout(function() {
         video.play();
     }, 5000);
+
+    video.id = event.streamid;
+};
+
+connection.onstreamended = function(event) {
+    var video = document.querySelector('.js-broadcast-video');
+    if (video) {
+        video.pause();
+    }
 };
 
 var predefinedRoomId = 'YOUR_Name';
@@ -43,5 +52,6 @@ document.getElementById('btn-open-room').onclick = function() {
 
 document.getElementById('btn-join-room').onclick = function() {
     this.disabled = true;
+
     connection.join( predefinedRoomId );
 };

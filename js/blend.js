@@ -33,18 +33,6 @@ Reveal.addEventListener( 'ready', function() {
     takeScreenshot.addEventListener("click", handleClick);
 
     function handleClick(e) {
-        function handleSuccess(stream) {
-            video.srcObject = stream;
-        }
-
-        function handleError(error) {
-            console.error('Reeeejected!', error);
-        }
-
-        navigator.mediaDevices.getUserMedia(constraints)
-            .then(handleSuccess)
-            .catch(handleError);
-
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 

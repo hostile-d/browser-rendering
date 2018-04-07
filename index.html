@@ -51,8 +51,7 @@
                 </section>
                 <section>
                     <div class="buttons__wrapper">
-                        <button id="btn-open-room">Open Room</button>
-                        <button id="btn-join-room">Join Room</button><hr>
+                        <div class="js-broadcast-controls"></div>
                         <button class="js-take-screenshot button button--screenshot">take screenshot</button>
                     </div>
                     <div class="js-broadcast broadcast stretch">
@@ -370,6 +369,7 @@
     <script src="js/reveal.js"></script>
     <script src="js/app.js"></script>
     <script src="js/RTCMultiConnection.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="js/broadcast.js"></script>
     <script src="js/blend.js"></script>
 </body>

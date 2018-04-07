@@ -7,7 +7,7 @@
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
-    "start": "node plugin/notes-server/index-local.js",
+    "start": "node plugin/notes-server",
     "build": "grunt"
   },
   "author": {

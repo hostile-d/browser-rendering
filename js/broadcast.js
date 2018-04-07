@@ -42,17 +42,13 @@ connection.onstreamended = function(event) {
 };
 function manageControls() {
     if(Reveal.getQueryHash().s) {
-        var controls = document.querySelector('.js-broadcast-controls');
-        var roomBtn = document.createElement('button');
-        controls.appendChild(roomBtn);
-        roomBtn.classList.add('js-broadcast-open');
-        roomBtn.classList.add('button');
-        roomBtn.innerText = "Open room";
+        var roomBtn = document.querySelector('.js-broadcast-open');
         roomBtn.addEventListener('click', function() {
             this.disabled = true;
             connection.open( predefinedRoomId );
         });
     } else {
+        document.querySelector('.js-broadcast-controls').style.display = 'none';
         connectTimer = setTimeout(keepCheckingForRoom, 3000);
     }
 }
@@ -92,18 +88,16 @@ function toggleCamera() {
             dontDuplicate[camera.deviceId] = true;
 
             cameras.push(camera.deviceId);
+        });
 
-            var toggleCameraBtn = document.querySelector('.js-broadcast-toggle-cam');
-
-            toggleCameraBtn.addEventListener('click', function() {
-                navigator.mediaDevices.getUserMedia({video: {deviceId: camera.deviceId}}).then(function(stream) {
-                    video.srcObject = stream;
-                    video.play();
-                });
+        var toggleCameraBtn = document.querySelector('.js-broadcast-toggle-cam');
+        var currentCamera = 0;
+        toggleCameraBtn.addEventListener('click', function() {
+            if(!currentCamera + 1) currentCamera = 0;
+            navigator.mediaDevices.getUserMedia({video: {deviceId: cameras[++currentCamera]}}).then(function(stream) {
+                video.srcObject = stream;
+                video.play();
             });
         });
     });
-
-
-
 }

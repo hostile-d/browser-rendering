@@ -41,8 +41,8 @@
 .buttons__wrapper {
     position: absolute;
     top: 2rem;
-    left: 3rem;
-    right: 3rem;
+    left: 0rem;
+    right: 0rem;
     z-index: 2;
 }
 .broadcast {

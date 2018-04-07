@@ -1,4 +1,4 @@
-Reveal.addEventListener( 'beforeBroadcast', function() {
+Reveal.addEventListener( 'ready', function() {
     const constraints = {
         video: true
     };
@@ -28,26 +28,23 @@ Reveal.addEventListener( 'beforeBroadcast', function() {
             screenshot = document.querySelector(".js-blend-screenshot"), 
             gif = document.querySelector(".js-travolta").currentSrc,
             blendButton = document.querySelector(".js-toggle-blend");
-    
-    function handleSuccess(stream) {
-        video.srcObject = stream;
-    }
-    
-    function handleError(error) {
-        console.error('Reeeejected!', error);
-    }
-    
-    navigator.mediaDevices.getUserMedia(constraints)
-        .then(handleSuccess)
-        .catch(handleError);
 
-    video.addEventListener('canplay', handlePlay);
 
-    function handlePlay() {
-        takeScreenshot.addEventListener("click", handleClick);
-    }
+    takeScreenshot.addEventListener("click", handleClick);
 
     function handleClick(e) {
+        function handleSuccess(stream) {
+            video.srcObject = stream;
+        }
+
+        function handleError(error) {
+            console.error('Reeeejected!', error);
+        }
+
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(handleSuccess)
+            .catch(handleError);
+
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 
@@ -55,8 +52,8 @@ Reveal.addEventListener( 'beforeBroadcast', function() {
         screenshot.style.height = "100%";
 
         canvas.getContext('2d').drawImage(video, 0, 0);
-        let blob = canvas.toDataURL('image/webp');
-        let gif = document.querySelector(".js-travolta").currentSrc;
+        var blob = canvas.toDataURL('image/webp');
+        var gif = document.querySelector(".js-travolta").currentSrc;
         screenshot.style.backgroundImage = `url(${gif}), url(${blob})`;
         e.target.style.display = "none";
 
@@ -64,7 +61,7 @@ Reveal.addEventListener( 'beforeBroadcast', function() {
     }
 
     function blendToggle() {
-        let random = blendModes[Math.floor(Math.random()*blendModes.length)];
+        var random = blendModes[Math.floor(Math.random()*blendModes.length)];
         screenshot.style.backgroundBlendMode = random;
     }
 }, false );

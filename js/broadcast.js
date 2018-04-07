@@ -40,7 +40,6 @@ connection.onstreamended = function(event) {
 };
 
 manageControls();
-toggleCamera();
 
 function keepCheckingForRoom() {
     connection.checkPresence(predefinedRoomId, function(isRoomExist, roomid) {
@@ -80,27 +79,7 @@ function manageControls() {
     }
 }
 
-function toggleCamera() {
-    var dontDuplicate = {};
-    var cameras = [];
 
-    DetectRTC.load(function() {
-        DetectRTC.videoInputDevices.forEach(function(camera) {
-            if(dontDuplicate[camera.deviceId])return;
-            dontDuplicate[camera.deviceId] = true;
-
-            cameras.push(camera.deviceId);
-        });
-
-        var toggleCameraBtn = document.querySelector('.js-broadcast-toggle-cam');
-        var currentCamera = 0;
-        toggleCameraBtn.addEventListener('click', function() {
-            if(!cameras[currentCamera + 1]) currentCamera = 0;
-            navigator.mediaDevices.getUserMedia({video: {deviceId: cameras[++currentCamera]}}).then(function(stream) {
-                connection.resetTrack(null, true);
-                video.srcObject = stream;
-                video.play();
-            });
-        });
-    });
-}
+document.querySelector('.js-show-gif').addEventListener('click', function (evt) {
+    document.querySelector('.js-travolta').style.display = 'block';
+})

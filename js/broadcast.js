@@ -17,22 +17,17 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: true
 };
 connection.onstream = function(event) {
-
-
-    event.mediaElement.removeAttribute('src');
-    event.mediaElement.removeAttribute('srcObject');
     var video = document.querySelector('.js-broadcast-video');
 
     video.srcObject = event.stream;
     video.controls = false;
 
     if(event.type === 'local') {
-
         video.muted = true;
     }
     setTimeout(function() {
         video.play();
-    }, 5000);
+    }, 2000);
 
     video.id = event.streamid;
 
@@ -56,18 +51,31 @@ function manageControls() {
             connection.open( predefinedRoomId );
         });
     } else {
-        connectTimer = setTimeout(checkingForRoom, 2000);
+        connectTimer = setTimeout(keepCheckingForRoom, 3000);
     }
 }
 manageControls();
 
-function checkingForRoom() {
-    connection.checkPresence(predefinedRoomId, function(isRoomEists, predefinedRoomId) {
-        if (isRoomEists) {
-            connection.join(predefinedRoomId);
-            clearInterval(connectTimer);
+function keepCheckingForRoom() {
+    connection.checkPresence(predefinedRoomId, function(isRoomExist, roomid) {
+        if(connection.isInitiator) {
+            console.log('You are room owner');
             return;
         }
-        setTimeout(checkingForRoom, 2000);
+
+        if(connection.peers[connection.sessionid]) {
+            setTimeout(keepCheckingForRoom, 3000);
+            console.log('Room owner is in the room');
+            return;
+        }
+        if (isRoomExist === true) {
+            connection.join(roomid);
+            console.log('Rejoined the room');
+            setTimeout(keepCheckingForRoom, 3000);
+            return;
+        }
+
+        console.log('Room owner left. Rechecking for the room...');
+        setTimeout(keepCheckingForRoom, 3000);
     });
-}
+};

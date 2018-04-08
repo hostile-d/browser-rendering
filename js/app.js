@@ -20,7 +20,7 @@ Reveal.initialize({
         { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 
         // Speaker notes
-        // { src: Reveal.getQueryHash().s ? 'plugin/notes-server/client.js' : '', async: true },
+        { src: Reveal.getQueryHash().s ? 'plugin/notes-server/client.js' : '', async: true },
 
     ],
 });

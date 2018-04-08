@@ -1,9 +1,7 @@
-Reveal.addEventListener( 'beforeBlend', function() {
-    const constraints = {
-        video: true
-    };
+var blendTimer = undefined;
 
-    const blendModes = [
+Reveal.addEventListener( 'blend', function() {
+    var blendModes = [
         "normal",
         "multiply",
         "screen",
@@ -22,35 +20,18 @@ Reveal.addEventListener( 'beforeBlend', function() {
         "luminosity"
     ];
 
-    const   video = document.querySelector('.js-broadcast-video'),
-            takeScreenshot = document.querySelector('.js-take-screenshot'),
-            canvas = document.createElement('canvas'),
-            screenshot = document.querySelector(".js-blend-screenshot"), 
-            gif = document.querySelector(".js-travolta").currentSrc,
-            blendButton = document.querySelector(".js-toggle-blend");
+    var screenshot = document.querySelector(".js-blend-screenshot");
+    var blendButton = document.querySelector(".js-toggle-blend");
 
-
-    takeScreenshot.addEventListener("click", handleClick);
-
-    function handleClick(e) {
-
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        screenshot.style.width = "100%"
-        screenshot.style.height = "100%";
-
-        canvas.getContext('2d').drawImage(video, 0, 0);
-        var blob = canvas.toDataURL('image/webp');
-        var gif = document.querySelector(".js-travolta").currentSrc;
-        screenshot.style.backgroundImage = 'url(' + gif + '), url(' + blob ')';
-        e.target.style.display = "none";
-
-        blendButton.addEventListener("click", blendToggle)
-    }
+    blendTimer = setInterval(blendToggle, 1000);
 
     function blendToggle() {
         var random = blendModes[Math.floor(Math.random()*blendModes.length)];
         screenshot.style.backgroundBlendMode = random;
     }
+
+}, false );
+
+Reveal.addEventListener( 'afterBlend', function() {
+    clearInterval(blendTimer);
 }, false );

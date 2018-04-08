@@ -11,9 +11,13 @@
 
 
 .reveal .blend-example__output {
-    background-size: 50%, contain;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/blend-bg.jpg'), url('../images/blend-layer.png');
+    background-blend-mode: hard-light;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: bottom right, center;
+    background-position: center;
     margin: 0 auto;
 }
 

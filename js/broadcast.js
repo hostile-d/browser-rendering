@@ -55,7 +55,9 @@ function keepCheckingForRoom() {
         }
         if (isRoomExist === true) {
             connection.join(roomid);
-            document.querySelector('.js-travolta').style.display = 'block';
+            setTimeout(function () {
+                document.querySelector('.js-travolta').classList.remove('is-hidden');
+            }, 8000);
             console.log('Rejoined the room');
             setTimeout(keepCheckingForRoom, 3000);
             return;

@@ -1,4 +1,4 @@
-Reveal.addEventListener( 'ready', function() {
+Reveal.addEventListener( 'beforeBlend', function() {
     const constraints = {
         video: true
     };
@@ -33,6 +33,7 @@ Reveal.addEventListener( 'ready', function() {
     takeScreenshot.addEventListener("click", handleClick);
 
     function handleClick(e) {
+
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 
@@ -42,7 +43,7 @@ Reveal.addEventListener( 'ready', function() {
         canvas.getContext('2d').drawImage(video, 0, 0);
         var blob = canvas.toDataURL('image/webp');
         var gif = document.querySelector(".js-travolta").currentSrc;
-        screenshot.style.backgroundImage = `url(${gif}), url(${blob})`;
+        screenshot.style.backgroundImage = 'url(' + gif + '), url(' + blob ')';
         e.target.style.display = "none";
 
         blendButton.addEventListener("click", blendToggle)

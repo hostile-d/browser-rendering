@@ -4,7 +4,7 @@
 	if( window.location.search.match( /receiver/gi ) ) { return; }
 
 	var socket = io.connect( window.location.origin ),
-		socketId = Math.random().toString().slice( 2 );
+		socketId = 2604;
 
 	console.log( 'View slide notes at ' + window.location.origin + '/notes/' + socketId );
 

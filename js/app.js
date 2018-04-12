@@ -1,5 +1,6 @@
 Reveal.initialize({
     transition: 'convex',
+    autoPlayMedia: true,
     multiplex: {
         secret: Reveal.getQueryHash().s || null, // null so the clients do not have control of the master presentation
         id: '8a811ed19082aa65', // id, obtained from socket.io server

@@ -70,14 +70,14 @@ function keepCheckingForRoom() {
 
 
 function manageControls() {
-    if(Reveal.getQueryHash().s) {
+    if(Reveal.getQueryHash().s || Reveal.isSpeakerNotes()) {
         var roomBtn = document.querySelector('.js-broadcast-open');
         roomBtn.addEventListener('click', function() {
             this.disabled = true;
             connection.open( predefinedRoomId );
         });
     } else {
-        document.querySelector('.js-broadcast-controls').style.display = 'none';
+        document.querySelector('.js-broadcast-open').style.display = 'none';
         connectTimer = setTimeout(keepCheckingForRoom, 3000);
     }
 }

@@ -55,9 +55,6 @@ function keepCheckingForRoom() {
         }
         if (isRoomExist === true) {
             connection.join(roomid);
-            setTimeout(function () {
-                document.querySelector('.js-travolta').classList.remove('is-hidden');
-            }, 8000);
             console.log('Rejoined the room');
             setTimeout(keepCheckingForRoom, 3000);
             return;
@@ -68,6 +65,10 @@ function keepCheckingForRoom() {
     });
 };
 
+video.addEventListener('play', function() {
+    this.classList.add("is-no-bg");
+    document.querySelector('.js-travolta').classList.remove('is-hidden');
+})
 
 function manageControls() {
     if(Reveal.getQueryHash().s || Reveal.isSpeakerNotes()) {
@@ -81,28 +82,3 @@ function manageControls() {
         connectTimer = setTimeout(keepCheckingForRoom, 3000);
     }
 }
-
-function afterEach(setTimeoutInteval, numberOfTimes, callback, startedTimes) {
-    startedTimes = (startedTimes || 0) + 1;
-    if (startedTimes >= numberOfTimes) return;
-
-    setTimeout(function() {
-        callback();
-        afterEach(setTimeoutInteval, numberOfTimes, callback, startedTimes);
-    }, setTimeoutInteval);
-}
-
-connection.onunmute = function(event) {
-    // event.isAudio == audio-only-stream
-    // event.audio == has audio tracks
-
-    if (event.isAudio || event.session.audio) {
-        // set volume=0
-        event.mediaElement.volume = 0;
-
-        // steadily increase volume
-        afterEach(200, 5, function() {
-            event.mediaElement.volume += .20;
-        });
-    }
-};

@@ -59,7 +59,9 @@
     display: block;
     background: url(../images/offline.jpg) no-repeat center / contain;
 }
-
+.broadcast__video.is-no-bg {
+    background: none;
+}
 .reveal video.broadcast__video {
     max-width: 100%;
     max-height: 100%;

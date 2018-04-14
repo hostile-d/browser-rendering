@@ -34,9 +34,6 @@ connection.onstream = function(event) {
 };
 connection.onstreamended = function(event) {
     var video = document.querySelector('.js-broadcast-video');
-    if (video) {
-        video.pause();
-    }
 };
 
 manageControls();
@@ -74,7 +71,6 @@ function manageControls() {
     if(Reveal.getQueryHash().s || Reveal.isSpeakerNotes()) {
         var roomBtn = document.querySelector('.js-broadcast-open');
         roomBtn.addEventListener('click', function() {
-            this.disabled = true;
             connection.open( predefinedRoomId );
         });
     } else {

@@ -371,7 +371,7 @@
 			}
 
 			// Limit to max one state update per X ms
-			handleStateMessage = debounce( handleStateMessage, 200 );
+			handleStateMessage = debounce( handleStateMessage, 1000 );
 
 			/**
 			 * Forward keyboard events to the current slide window.

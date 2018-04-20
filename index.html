@@ -10,6 +10,8 @@
         <div class="slides">
             <section>
                 <h1>Browser rendering</h1>
+                <h2>Danil Shilov</h2>
+                <img src="images/fuse8.png" width="150" alt="">
                 <aside class="notes">
                     <ul>
                         <li>Pretty simple theme, but somebody could here something new, another could refresh this important things in their memory.</li>
@@ -25,7 +27,7 @@
                 </aside>
                 <section>
                     <h3>Just an array in memory</h3>
-                    <img src="images/pixel.png" alt="">
+                    <img data-src="images/pixel.png" alt="">
                     <aside class="notes">
                         <ul>
                             <li>Each one of three components of pixel(RGB) have 0%-100% brightness. or 0-255, or 1 Byte</li>
@@ -36,7 +38,7 @@
             <section>
                 <section>
                     <h3>Sprite, Layer, Texture</h3>
-                    <img src="images/coder-1.svg" alt="">
+                    <img data-src="images/coder-1.svg" alt="">
                     <aside class="notes">
                         <ul>
                             <li>Sprite, Layer, Texture - all the same thing in different spheres.</li>
@@ -47,13 +49,13 @@
                 </section>
                 <section>
                     <h3>Sprite, Layer, Texture</h3>
-                    <img src="images/coder-2.svg" alt="">
+                    <img data-src="images/coder-2.svg" alt="">
                 </section>
                 <section data-state="broadcast">
                     <button class="button js-broadcast-open">Open room</button>
                     <div class="js-broadcast broadcast stretch">
                         <video class="js-broadcast-video broadcast__video" muted></video>
-                        <img class="js-travolta is-hidden broadcast__img" src="images/travolta.gif" alt="">
+                        <img class="js-travolta is-hidden broadcast__img" data-src="images/travolta.gif" alt="">
                     </div>
                     <aside class="notes">
                         <ul>
@@ -93,12 +95,12 @@
                 <section data-state="blend">
                     <h3>background-blend-mode</h3>
                     <div class="blend-example stretch">
-                        <div class="js-blend-screenshot blend-example__output"></div></button>
+                        <div class="js-blend-screenshot blend-example__output"></div>
                     </div>
                     <aside class="notes">
                         <ul>
                             <li>As far composition is a funtion we can change something inside of it</li>
-                            <li>For example multyply colors or combine another math</li>
+                            <li>For example multiply colors or combine another math</li>
                         </ul>
                     </aside>
                 </section>
@@ -142,7 +144,7 @@
             <section>
                 <section>
                     <h3>Browser rendering</h3>
-                    <img src="images/render-tree.png" alt="">
+                    <img data-src="images/render-tree.png" alt="">
                     <aside class="notes">
                         <ol>
                             <li>Use the HTML to create the Document Object Model (DOM).</li>
@@ -156,8 +158,8 @@
                 </section>
                 <section>
                     <h3>Blink engine</h3>
-                    <img src="images/blink1.png" alt="">
-                    <img src="images/blink2.png" class="fragment" alt="">
+                    <img data-src="images/blink1.png" alt="">
+                    <img data-src="images/blink2.png" class="fragment" alt="">
                     <aside class="notes">
                         <ul>
                             <li>CPU is universal enought</li>
@@ -171,7 +173,7 @@
                 </section>
                 <section>
                     <h3>CPU:</h3>
-                    <img src="images/dog-lag.gif" alt="" width="100%">
+                    <img data-src="images/dog-lag.gif" alt="" width="100%">
                 </section>
             </section>
             <section>
@@ -187,16 +189,16 @@
                 <section>
                     <h3>Composite layers</h3>
                     <video width="100%" class="js-play-toggle">
-                            <source src="images/3d-layers.mp4" type="video/mp4">
+                            <source data-src="images/3d-layers.mp4" type="video/mp4">
                         </video>
                 </section>
                 <section>
                     <h3>Rendering tiles</h3>
-                    <img src="images/netflix.png" alt="">
+                    <img data-src="images/netflix.png" alt="">
                 </section>
                 <section>
                     <a href="https://csstriggers.com/">csstriggers.com</a>
-                    <img src="images/csstriggers.png" alt="">
+                    <img data-src="images/csstriggers.png" alt="">
                 </section>
                 <section>
                     <h2>Solution</h2>
@@ -211,7 +213,7 @@
             <section>
                 <section>
                     <h2>But now JavaScript</h2>
-                    <img src="images/translate.png" alt="">
+                    <img data-src="images/translate.png" alt="">
                 </section>
                 <section>
                     <pre>
@@ -352,7 +354,7 @@
                     <ul>
                         <li>Use right technology</li>
                         <li>requestAnimationFrame API</li>
-                        <li>Throttling</li>
+                        <li>Throttle / Debounce</li>
                         <li>Pass to webworkers</li>
                     </ul>
                 </section>
